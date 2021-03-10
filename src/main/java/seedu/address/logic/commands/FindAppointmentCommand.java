@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
+import seedu.address.model.appointment.AppointmentNameContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 /**
@@ -19,9 +20,9 @@ public class FindAppointmentCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " hdb jurong";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final AppointmentNameContainsKeywordsPredicate predicate;
 
-    public FindAppointmentCommand(NameContainsKeywordsPredicate predicate) {
+    public FindAppointmentCommand(AppointmentNameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

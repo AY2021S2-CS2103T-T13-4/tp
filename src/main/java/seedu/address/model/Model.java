@@ -100,4 +100,13 @@ public interface Model {
     boolean hasAppointment(Appointment appointment);
 
     void addAppointment(Appointment appointment);
+
+    /** Returns an unmodifiable view of the filtered appointments list */
+    ObservableList<Appointment> getFilteredAppointmentList();
+
+    /**
+     * Updates the filter of the filtered appointments list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredAppointmentList(Predicate<Appointment> predicate);
 }

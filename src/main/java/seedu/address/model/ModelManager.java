@@ -27,6 +27,7 @@ public class ModelManager implements Model {
 
     private final PropertyBook propertyBook;
     private final AppointmentBook appointmentBook;
+    private final FilteredList<Appointment> filteredAppointments;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -43,6 +44,7 @@ public class ModelManager implements Model {
 
         propertyBook = new PropertyBook();
         appointmentBook = new AppointmentBook();
+        filteredAppointments = new FilteredList<>(this.appointmentBook.getReadOnlyList());
     }
 
     public ModelManager() {
@@ -108,6 +110,17 @@ public class ModelManager implements Model {
     @Override
     public void addAppointment(Appointment appointment) {
         appointmentBook.addAppointment(appointment);
+    }
+
+    @Override
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return filteredAppointments;
+    }
+
+    @Override
+    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+        requireNonNull(predicate);
+        filteredAppointments.setPredicate(predicate);
     }
 
     //=========== AddressBook ================================================================================
