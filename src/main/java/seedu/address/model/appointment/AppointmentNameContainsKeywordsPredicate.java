@@ -1,7 +1,6 @@
 package seedu.address.model.appointment;
 
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 import java.util.List;
 import java.util.function.Predicate;
