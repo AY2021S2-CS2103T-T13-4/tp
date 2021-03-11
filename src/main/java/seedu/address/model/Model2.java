@@ -1,20 +1,21 @@
 package seedu.address.model;
 
-import java.nio.file.Path;
-import java.util.function.Predicate;
-
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.model.property.Property;
 
+import java.nio.file.Path;
+import java.util.function.Predicate;
+
 /**
  * The API of the Model component.
  */
-public interface Model {
+public interface Model2 {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
+    Predicate<?> PREDICATE_SHOW_ALL = unused -> true;
+    //TODO change wildcard type here to something else
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -43,23 +44,19 @@ public interface Model {
 
     /**
      * Sets the user prefs' appointment book file path.
-     * @param appointmentBookFilePath path to file containing appointment book
      */
     void setAppointmentBookFilePath(Path appointmentBookFilePath);
 
     /**
-     * Replaces appointment book data with the data in {@code appointmentBook}.
-     * @param appointmentBook unmodifiable list of appointments
+     * Replaces appointment book data with the data in {@code addressBook}.
      */
     void setAppointmentBook(ReadOnlyBook<Appointment> appointmentBook);
 
-    /** Returns the AppointmentBook
-     * @return unmodifiable list of appointments
-     * */
+    /** Returns the Appointment book */
     ReadOnlyBook<Appointment> getAppointmentBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if an appointment with the same name as {@code appointment} exists in the appointment book.
      */
     boolean hasPerson(Person person);
 
@@ -102,7 +99,6 @@ public interface Model {
     // API for AppointmentBook
 
 
-    boolean hasAppointment(Appointment appointment);
 
     void addAppointment(Appointment appointment);
 
