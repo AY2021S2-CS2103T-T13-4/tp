@@ -1,16 +1,26 @@
 package seedu.address.model.util;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.*;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.Date;
+import seedu.address.model.appointment.Time;
 import seedu.address.model.name.Name;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.property.Deadline;
+import seedu.address.model.property.PostalCode;
+import seedu.address.model.property.client.AskingPrice;
+import seedu.address.model.property.client.Client;
+import seedu.address.model.property.client.Contact;
+import seedu.address.model.remark.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -57,4 +67,39 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    public static Appointment[] getSampleAppointments() {
+        return new Appointment[]{
+                new Appointment(new Name("Meet Alex"),
+                        new Remark("At M Hotel"),
+                        new Date(LocalDate.parse("25-12-2021", DateTimeFormat.INPUT_DATE_FORMAT)),
+                        new Time(LocalTime.parse("1500", DateTimeFormat.INPUT_TIME_FORMAT))),
+                new Appointment(new Name("Meet Bob"),
+                        new Remark("At Plaza Singapore Starbucks"),
+                        new Date(LocalDate.parse("01-02-2021", DateTimeFormat.INPUT_DATE_FORMAT)),
+                        new Time(LocalTime.parse("2000", DateTimeFormat.INPUT_TIME_FORMAT))),
+                new Appointment(new Name("Meet Alice"),
+                        new Remark("At client's house"),
+                        new Date(LocalDate.parse("17-08-2021", DateTimeFormat.INPUT_DATE_FORMAT)),
+                        new Time(LocalTime.parse("1500", DateTimeFormat.INPUT_TIME_FORMAT))),
+                new Appointment(new Name("Meet Caleb"),
+                        new Remark("At void deck of his house"),
+                        new Date(LocalDate.parse("07-03-2021", DateTimeFormat.INPUT_DATE_FORMAT)),
+                        new Time(LocalTime.parse("1030", DateTimeFormat.INPUT_TIME_FORMAT))),
+                new Appointment(new Name("Meet Simon"),
+                        new Remark("At Queenstown MRT station"),
+                        new Date(LocalDate.parse("20-09-2021", DateTimeFormat.INPUT_DATE_FORMAT)),
+                        new Time(LocalTime.parse("1200", DateTimeFormat.INPUT_TIME_FORMAT)))
+        };
+    }
+
+    /**
+     * Returns an appointment book containing some sample appointments.
+     */
+    public static ReadOnlyBook<Appointment> getSampleAppointmentBook() {
+        AppointmentBook sampleAppointmentBook = new AppointmentBook();
+        for (Appointment sampleAppointment : getSampleAppointments()) {
+            sampleAppointmentBook.addAppointment(sampleAppointment);
+        }
+        return sampleAppointmentBook;
+    }
 }
