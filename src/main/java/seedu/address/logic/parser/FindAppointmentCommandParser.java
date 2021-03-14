@@ -12,7 +12,7 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 /**
  * Parses input arguments and creates a new FindCommand object
  */
-public class FindCommandParser implements Parser<FindAppointmentCommand> {
+public class FindAppointmentCommandParser implements Parser<FindAppointmentCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
