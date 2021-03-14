@@ -17,7 +17,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
@@ -102,12 +102,12 @@ public class AddAppointmentCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getAppointmentBookFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setAppointmentBookFilePath(Path appointmentBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -117,12 +117,12 @@ public class AddAppointmentCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setAppointmentBook(ReadOnlyBook<Appointment> newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyBook<Appointment> getAppointmentBook() {
             throw new AssertionError("This method should not be called.");
         }
 

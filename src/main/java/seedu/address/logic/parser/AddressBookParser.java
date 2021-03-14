@@ -71,7 +71,7 @@ public class AddressBookParser {
             return new DeleteCommandParser().parse(arguments);
 
         case FindAppointmentCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+            return new FindAppointmentCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

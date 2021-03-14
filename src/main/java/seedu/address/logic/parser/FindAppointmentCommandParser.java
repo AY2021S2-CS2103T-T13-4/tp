@@ -6,12 +6,14 @@ import java.util.Arrays;
 
 import seedu.address.logic.commands.FindAppointmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.appointment.AppointmentNameContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
  */
-public class FindCommandParser implements Parser<FindAppointmentCommand> {
+
+public class FindAppointmentCommandParser implements Parser<FindAppointmentCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
@@ -25,9 +27,9 @@ public class FindCommandParser implements Parser<FindAppointmentCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindAppointmentCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
+        String[] appointmentKeywords = trimmedArgs.split("\\s+");
 
-        return new FindAppointmentCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindAppointmentCommand(new AppointmentNameContainsKeywordsPredicate(Arrays.asList(appointmentKeywords)));
     }
 
 }

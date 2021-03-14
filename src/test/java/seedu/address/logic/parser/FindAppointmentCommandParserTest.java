@@ -13,7 +13,7 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 public class FindAppointmentCommandParserTest {
 
-    private FindCommandParser parser = new FindCommandParser();
+    private FindAppointmentCommandParser parser = new FindAppointmentCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
@@ -23,9 +23,15 @@ public class FindAppointmentCommandParserTest {
     @Test
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
+<<<<<<< HEAD:src/test/java/seedu/address/logic/parser/FindAppointmentCommandParserTest.java
         FindAppointmentCommand expectedFindAppointmentCommand =
                 new FindAppointmentCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
         assertParseSuccess(parser, "Alice Bob", expectedFindAppointmentCommand);
+=======
+        FindAppointmentCommand expectedFindCommand =
+                new FindAppointmentCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+        assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
+>>>>>>> branch-find:src/test/java/seedu/address/logic/parser/FindCommandParserTest.java
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindAppointmentCommand);

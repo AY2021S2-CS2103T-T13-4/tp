@@ -27,6 +27,7 @@ public class ModelManager implements Model {
 
     private final PropertyBook propertyBook;
     private final AppointmentBook appointmentBook;
+    private final FilteredList<Appointment> filteredAppointments;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -43,6 +44,7 @@ public class ModelManager implements Model {
 
         propertyBook = new PropertyBook();
         appointmentBook = new AppointmentBook();
+        filteredAppointments = new FilteredList<>(this.appointmentBook.getReadOnlyList());
     }
 
     public ModelManager() {
@@ -74,14 +76,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getAppointmentBookFilePath() {
         return userPrefs.getAddressBookFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setAppointmentBookFilePath(Path appointmentBookFilePath) {
+        requireNonNull(appointmentBookFilePath);
+        userPrefs.setAddressBookFilePath(appointmentBookFilePath);
     }
 
     //=========== PropertyBook ================================================================================
@@ -110,15 +112,26 @@ public class ModelManager implements Model {
         appointmentBook.addAppointment(appointment);
     }
 
-    //=========== AddressBook ================================================================================
-
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return filteredAppointments;
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
+    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+        requireNonNull(predicate);
+        filteredAppointments.setPredicate(predicate);
+    }
+
+    //=========== AddressBook ================================================================================
+
+    @Override
+    public void setAppointmentBook(ReadOnlyBook<Appointment> appointmentBook) {
+        this.addressBook.resetData(appointmentBook);
+    }
+
+    @Override
+    public ReadOnlyBook<Appointment> getAppointmentBook() {
         return addressBook;
     }
 
