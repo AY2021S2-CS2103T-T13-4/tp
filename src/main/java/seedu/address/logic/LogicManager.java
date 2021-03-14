@@ -46,7 +46,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAppointmentBook());
+            storage.saveAppointmentBook(model.getAppointmentBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -56,7 +56,7 @@ public class LogicManager implements Logic {
 
     @Override
     public ReadOnlyBook<Appointment> getAppointmentBook() {
-        return model.getAppoi();
+        return model.getAppointmentBook();
     }
 
     @Override
