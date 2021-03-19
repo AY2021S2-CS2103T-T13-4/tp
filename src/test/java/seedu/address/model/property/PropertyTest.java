@@ -5,10 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BURGHLEY_DRIVE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_LOCALDATE_BURGHLEY_DRIVE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BURGHLEY_DRIVE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_MAYFAIR;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_POSTAL_BURGHLEY_DRIVE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROPERTY_TAG_FREEHOLD;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_BURGHLEY_DRIVE;
+
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalClients.CLIENT_ALICE;
 import static seedu.address.testutil.TypicalProperties.BURGHLEY_DRIVE;
 import static seedu.address.testutil.TypicalProperties.MAYFAIR;
@@ -23,6 +27,12 @@ import seedu.address.testutil.PropertyBuilder;
 public class PropertyTest {
 
     @Test
+    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
+        Property property = new PropertyBuilder().build();
+        assertThrows(UnsupportedOperationException.class, () -> property.getTags().remove(0));
+    }
+
+    @Test
     public void isSameProperty() {
         // same object -> returns true
         assertTrue(MAYFAIR.isSameProperty(MAYFAIR));
@@ -32,7 +42,7 @@ public class PropertyTest {
 
         // same address and postal code, all other attributes different -> returns true
         Property editedMayfair = new PropertyBuilder(MAYFAIR).withName(VALID_NAME_BURGHLEY_DRIVE)
-                .withType(VALID_TYPE_BURGHLEY_DRIVE).withDeadline(LocalDate.parse("2021-07-31"))
+                .withType(VALID_TYPE_BURGHLEY_DRIVE).withDeadline(VALID_DEADLINE_LOCALDATE_BURGHLEY_DRIVE)
                 .build();
         assertTrue(MAYFAIR.isSameProperty(editedMayfair));
 
@@ -100,8 +110,12 @@ public class PropertyTest {
         assertFalse(MAYFAIR.equals(editedMayfair));
 
         // different deadline -> returns false
-        editedMayfair = new PropertyBuilder(MAYFAIR).withDeadline(LocalDate.parse("2021-07-31"))
+        editedMayfair = new PropertyBuilder(MAYFAIR).withDeadline(VALID_DEADLINE_LOCALDATE_BURGHLEY_DRIVE)
                 .build();
+        assertFalse(MAYFAIR.equals(editedMayfair));
+
+        // different tags -> returns false
+        editedMayfair = new PropertyBuilder(MAYFAIR).withTags(VALID_PROPERTY_TAG_FREEHOLD).build();
         assertFalse(MAYFAIR.equals(editedMayfair));
     }
 }
