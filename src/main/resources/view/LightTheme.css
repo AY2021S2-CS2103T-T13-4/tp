@@ -124,6 +124,7 @@
 
 .list-cell .label {
     -fx-text-fill: black;
+    -fx-wrap-text: true;
 }
 
 .cell_big_label {
@@ -139,7 +140,7 @@
 }
 
 .stack-pane {
-     -fx-background-color: derive(#FFFFFF, 20%);
+     -fx-background-color: derive(#1d1d1d, 20%);
 }
 
 .pane-with-border {
@@ -156,11 +157,13 @@
     -fx-background-color: transparent;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
-    -fx-text-fill: black;
+    -fx-text-fill: white;
+    -fx-wrap-text: true;
 }
 
 .result-display .label {
-    -fx-text-fill: black !important;
+    -fx-text-fill: white !important;
+
 }
 
 .status-bar .label {
@@ -333,7 +336,7 @@
     -fx-border-width: 1;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
-    -fx-text-fill: black;
+    -fx-text-fill: white;
 }
 
 #filterField, #personListPanel, #personWebpage {
@@ -341,7 +344,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, white, white, white;
+    -fx-background-color: transparent, #484848, transparent, #484848;
     -fx-background-radius: 0;
 }
 
